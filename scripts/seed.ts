@@ -1,40 +1,151 @@
-import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/db'
 
 export default async () => {
-  try {
-    //
-    // Manually seed via `yarn rw prisma db seed`
-    // Seeds automatically with `yarn rw prisma migrate dev` and `yarn rw prisma migrate reset`
-    //
-    // Update "const data = []" to match your data model and seeding needs
-    //
-    const data: Prisma.UserExampleCreateArgs['data'][] = [
-      // To try this example data with the UserExample model in schema.prisma,
-      // uncomment the lines below and run 'yarn rw prisma migrate dev'
-      //
-      // { name: 'alice', email: 'alice@example.com' },
-      // { name: 'mark', email: 'mark@example.com' },
-      // { name: 'jackie', email: 'jackie@example.com' },
-      // { name: 'bob', email: 'bob@example.com' },
-    ]
-    console.log(
-      "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
-    )
+  const gojira = await db.band.create({
+    data: {
+      name: 'Gojira',
+      albums: {
+        create: [
+          {
+            name: 'Magma',
+            songs: {
+              create: [
+                { name: 'The Shooting Star' },
+                { name: 'Silvera' },
+                { name: 'The Cell' },
+                { name: 'Stranded' },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  })
+  console.log(`CREATED ${gojira.name}`)
 
-    // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
-    // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
-    Promise.all(
-      //
-      // Change to match your data model and seeding needs
-      //
-      data.map(async (data: Prisma.UserExampleCreateArgs['data']) => {
-        const record = await db.userExample.create({ data })
-        console.log(record)
-      })
-    )
-  } catch (error) {
-    console.warn('Please define your seed data.')
-    console.error(error)
-  }
+  const metallica = await db.band.create({
+    data: {
+      name: 'Metallica',
+      albums: {
+        create: [
+          {
+            name: "Kill 'Em All",
+            songs: {
+              create: [
+                { name: 'Hit the Lights' },
+                { name: 'The Four Horsemen' },
+                { name: 'Motorbreath' },
+                { name: 'Jump in the Fire' },
+                { name: '(Anesthesia)-Pulling Teeth' },
+                { name: 'Whiplash' },
+                { name: 'Phantom Lord' },
+                { name: 'No Remorse' },
+                { name: 'Seek & Destroy' },
+                { name: 'Metal Militia' },
+              ],
+            },
+          },
+        ],
+      },
+      members: {
+        create: [
+          {
+            musician: {
+              create: { name: 'James Hetfield' },
+            },
+          },
+          {
+            musician: {
+              create: { name: 'Kirk Hammett' },
+            },
+          },
+          {
+            musician: {
+              create: { name: 'Robert Trujillo' },
+            },
+          },
+          {
+            musician: {
+              create: { name: 'Lars Ulrich' },
+            },
+          },
+        ],
+      },
+    },
+  })
+  console.log(`CREATED ${metallica.name}`)
+
+  const cliff = await db.musician.create({ data: { name: 'Cliff Burton' } })
+  const dave = await db.musician.create({ data: { name: 'Dave Mustaine' } })
+  const jason = await db.musician.create({ data: { name: 'Jason Newsted ' } })
+  const ron = await db.musician.create({ data: { name: 'Ron McGovney' } })
+  await db.bandMember.create({
+    data: {
+      active: false,
+      bandId: metallica.id,
+      musicianId: cliff.id,
+    },
+  })
+  await db.bandMember.create({
+    data: {
+      active: false,
+      bandId: metallica.id,
+      musicianId: dave.id,
+    },
+  })
+  await db.bandMember.create({
+    data: {
+      active: false,
+      bandId: metallica.id,
+      musicianId: jason.id,
+    },
+  })
+  await db.bandMember.create({
+    data: {
+      active: false,
+      bandId: metallica.id,
+      musicianId: ron.id,
+    },
+  })
+
+  const rideTheLightning = await db.album.create({
+    data: {
+      name: 'Ride the Lightning',
+      bandId: metallica.id,
+    },
+  })
+  console.log(`CREATED ${rideTheLightning.name}`)
+
+  await db.song.create({
+    data: { name: 'Fight Fire with Fire', albumId: rideTheLightning.id },
+  })
+  await db.song.create({
+    data: { name: 'Ride the Lightning', albumId: rideTheLightning.id },
+  })
+  await db.song.create({
+    data: { name: 'For Whom the Bell Tolls', albumId: rideTheLightning.id },
+  })
+  await db.song.create({
+    data: { name: 'Fade to Black', albumId: rideTheLightning.id },
+  })
+  await db.song.create({
+    data: { name: 'Trapped Under Ice', albumId: rideTheLightning.id },
+  })
+  await db.song.create({
+    data: { name: 'Escape', albumId: rideTheLightning.id },
+  })
+  await db.song.create({
+    data: { name: 'Creeping Death', albumId: rideTheLightning.id },
+  })
+  await db.song.create({
+    data: {
+      name: 'The Call of Ktulu',
+      albumId: rideTheLightning.id,
+      // writingCredits: [cliff.id], TODO: ????????????????????
+    },
+  })
+  const rideTheLightningSongs = await db.song.findMany({
+    where: { albumId: rideTheLightning.id },
+  })
+  console.log(`CREATED ${rideTheLightningSongs.length} songs`)
 }
