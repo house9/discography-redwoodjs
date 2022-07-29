@@ -44,16 +44,6 @@ async function seedGojira() {
   await db.song.create({
     data: { name: 'Magma', album: { connect: { id: magma.id } } },
   })
-  // NOTE: this compiles but fails at runtime, I _thought_ connect allowed you to pass objects?
-  // await db.song.create({
-  //   data: { name: 'Magma', album: { connect: magma } },
-  // })
-  // Invalid `db.song.create()` invocation
-  // Argument data.album.connect of type AlbumWhereUniqueInput needs exactly one argument,
-  // but you provided id and name and bandId.
-  // Please choose one. Available args:
-  // type AlbumWhereUniqueInput { id?: String }
-
   // the rest of side two songs...
   await db.song.createMany({
     data: [

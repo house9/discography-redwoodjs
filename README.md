@@ -38,6 +38,7 @@ I recommend reading the links listed in the Resources section of each document:
 
 - Data modeling and querying with Prisma
   - [Intro](./docs/prisma-1-intro.md)
+  - [one-to-many](./docs/prisma-2-one-to-many.md)
 - TODO: services
 - TODO: GraphQL
 - TODO: front end
@@ -110,5 +111,3 @@ yarn redwood prisma db seed
   - research what the `handlePrismaLogging` is doing
 
 
-compiled prisma client
-`node_modules/.prisma/client/index.d.ts`
