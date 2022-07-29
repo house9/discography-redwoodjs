@@ -59,8 +59,8 @@ id String @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
 ```
 
 - typescript type of `String`
-- database default value: generate a new uuid value
 - database type of `uuid`
+- database default value: a new uuid value
 
 
 ## Table naming
@@ -108,11 +108,11 @@ select * from "FooBar";
 
 ## Database logging
 
-The instance of the prisma client that is used through out a Redwoodjs application is found in:
+The instance of the prisma client that is used throughout a Redwoodjs application is found in:
 
 `./api/src/lib/db.ts`
 
-If you are interested in inspecting the SQL Prisma generates you add custom logging:
+You can setup custom logging to inspect the SQL that Prisma generates:
 
 ```ts
 import { PrismaClient, Prisma } from '@prisma/client'
