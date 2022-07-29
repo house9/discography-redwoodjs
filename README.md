@@ -1,15 +1,39 @@
-# ?
+# Discography
 
+Sample application for learning [Redwood.js](https://redwoodjs.com/) and [Prisma.js](https://www.prisma.io/)
+
+## Get started
 ```
+# install dependencies
 yarn install
+# set up config
+cp .env.example .env
+# start up database servers
+docker-compose up -d
+# rebuild database, migrations and seed
+yarn rw prisma migrate reset --force
+# development console
+yarn rw console
+# development server
+yarn rw dev
 ```
 
-```
-docker-compose up -d
-yarn rw prisma migrate dev --name xxxx
-yarn rw prisma migrate reset --force
-yarn redwood prisma db seed
-```
+## Sample application
+
+A naive implementation for managing Bands and their Discographies.
+
+### Data model
+
+![Database](./db-schema-diagram.png)
+
+## Learning
+
+- Data modeling and querying with Prisma
+- TODO: services
+- TODO: GraphQL
+- TODO: front end
+
+## WIP...
 
 ```
 yarn rw console
@@ -48,3 +72,23 @@ bands.forEach((band) => {
 
 - https://redwoodjs.com
 - https://www.prisma.io/docs/concepts/components/prisma-schema/data-model
+
+## Notes
+
+```
+yarn rw prisma migrate dev --name xxxx
+yarn redwood prisma db seed
+```
+## TODO: Copy seed code to example README files for each variation
+
+- different relations types
+- lower case table names
+- uuid PK postgres, extension migration
+- transactions with sql logging
+
+
+- implicit many-to-many
+  - table naming: _Table1ToTable2 i.e. _BandToMusician
+    - with A and B as column names for the foreign keys
+  - https://stackoverflow.com/a/71677210/317989
+  - my preference: Avoid and use explicit many-to-many
