@@ -7,20 +7,11 @@ import { emitLogLevels, handlePrismaLogging } from '@redwoodjs/api/logger'
 
 import { logger } from './logger'
 
-/*
- * Instance of the Prisma Client
- */
 export const db = new PrismaClient<
   Prisma.PrismaClientOptions,
   'info' | 'warn' | 'error' | 'query'
 >({
   log: emitLogLevels(['info', 'warn', 'error', 'query']),
-})
-
-handlePrismaLogging({
-  db,
-  logger,
-  logLevels: ['info', 'warn', 'error', 'query'],
 })
 
 db.$on('query', (e: Prisma.QueryEvent) => {
@@ -31,4 +22,10 @@ db.$on('query', (e: Prisma.QueryEvent) => {
   console.log('Duration: ' + e.duration + 'ms')
   console.log('----------------------------')
   console.log(' ')
+})
+
+handlePrismaLogging({
+  db,
+  logger,
+  logLevels: ['info', 'warn', 'error', 'query'],
 })

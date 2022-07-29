@@ -8,8 +8,6 @@ generator client {
   binaryTargets = "native"
 }
 
-// we are ignoring compilation albums (more than one band) for simplicity
-
 // one-to-many Band -> Albums
 model Band {
   @@map("bands")

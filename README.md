@@ -22,13 +22,22 @@ yarn rw dev
 
 A naive implementation for managing Bands and their Discographies.
 
+We are ignoring compilation albums (more than one band) for simplicity.
+
 ### Data model
+
+Our sample application is running a postgres database inside a Docker container.
+
+#### The database schema:
 
 ![Database](./db-schema-diagram.png)
 
 ## Learning
 
+I recommend reading the links listed in the Resources section of each document:
+
 - Data modeling and querying with Prisma
+  - [Intro](./docs/prisma-1-intro.md)
 - TODO: services
 - TODO: GraphQL
 - TODO: front end
@@ -92,3 +101,14 @@ yarn redwood prisma db seed
     - with A and B as column names for the foreign keys
   - https://stackoverflow.com/a/71677210/317989
   - my preference: Avoid and use explicit many-to-many
+
+---
+
+## TODO:
+- `docs/prisma-1-intro.md`
+  - check out difference between `pgcrypto` and `uuid-ossp`, which should we prefer in these docs?
+  - research what the `handlePrismaLogging` is doing
+
+
+compiled prisma client
+`node_modules/.prisma/client/index.d.ts`
