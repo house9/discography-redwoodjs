@@ -39,12 +39,8 @@ I recommend reading the links listed in the Resources section of each document:
 - Data modeling and querying with Prisma
   - [Intro](./docs/prisma-1-intro.md)
   - [one-to-many](./docs/prisma-2-one-to-many.md)
-  - TODO: implicit many-to-many
-    - table naming: _Table1ToTable2 i.e. _BandToMusician
-      - with A and B as column names for the foreign keys
-    - https://stackoverflow.com/a/71677210/317989
-    - my preference: Avoid and use explicit many-to-many
-  - TODO: explicit many-to-many
+  - [many-to-many (implicit)](./docs/prisma-3-many-to-many-implicit.md)
+  - [many-to-many (explicit)](./docs/prisma-4-many-to-many-explicit.md)
   - TODO: database transactions
 - TODO: services
 - TODO: GraphQL

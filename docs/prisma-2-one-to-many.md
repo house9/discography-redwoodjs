@@ -5,6 +5,8 @@
 An `Album` has many `Songs`
 
 ```ts
+// api/db/schema.prisma
+
 model Album {
   @@map("albums")
 
