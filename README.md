@@ -61,7 +61,5 @@ I recommend reading the links listed in the Resources section of each document:
 
 ## Notes
 
-
-```
-/Applications/Postgres.app/Contents/Versions/14/bin/psql $DATABASE_URL
-```
+- yarn rw console (Node REPL) imports:
+  - `let { v4 } = await import('uuid')`

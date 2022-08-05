@@ -65,20 +65,22 @@ await db.song.create({
 
 ```ts
 const magma = await db.album.create({
-  name: 'Magma',
-  songs: {
-    create: [
-      { name: 'The Shooting Star' },
-      { name: 'Silvera' },
-      { name: 'The Cell' },
-      { name: 'Stranded' },
-      { name: 'Yellow Stone' },
-      { name: 'Magma' },
-      { name: 'Pray' },
-      { name: 'Only Pain' },
-      { name: 'Low Lands' },
-      { name: 'Liberation' },
-    ],
+  data: {
+    name: 'Magma',
+    songs: {
+      create: [
+        { name: 'The Shooting Star' },
+        { name: 'Silvera' },
+        { name: 'The Cell' },
+        { name: 'Stranded' },
+        { name: 'Yellow Stone' },
+        { name: 'Magma' },
+        { name: 'Pray' },
+        { name: 'Only Pain' },
+        { name: 'Low Lands' },
+        { name: 'Liberation' },
+      ],
+    },
   },
 })
 ```

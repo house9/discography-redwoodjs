@@ -1,14 +1,28 @@
+import { PrismaClient } from '@prisma/client'
 import { db } from 'api/src/lib/db'
+import { v4 } from 'uuid'
 
 export default async () => {
   // !!! this seed is not idempotent, for demonstration purposes only
   const gojira = await seedGojira()
   console.log(`CREATED ${gojira.name}`)
 
-  // const metallica = await seedMetallica()
-  // console.log(`CREATED ${metallica.name}`)
+  const metallica = await seedMetallica()
+  console.log(`CREATED ${metallica.name}`)
 
-  await runGojiraQueries(gojira.id)
+  const blackSabbath1 = await seedBlackSabbath1()
+  console.log(`CREATED ${blackSabbath1.name}`)
+
+  const blackSabbath2 = await seedBlackSabbath2()
+  console.log(`CREATED ${blackSabbath2.name}`)
+
+  const blackSabbath3 = await createBand('Black Sabbath', [
+    'Black Sabbath',
+    'Paranoid',
+  ])
+  console.log(`CREATED ${blackSabbath3.name}`)
+
+  // await runGojiraQueries(gojira.id)
 }
 
 async function seedGojira() {
@@ -324,5 +338,75 @@ async function seedMetallica() {
   })
   console.log(`CREATED ${rideTheLightningSongs.length} songs`)
 
-  return { name: 'TODO: Metallica' }
+  return metallica
+}
+
+async function seedBlackSabbath1() {
+  const unitOfWork = async (tx: PrismaClient) => {
+    const blackSabbath = await tx.band.create({
+      data: { name: 'Black Sabbath' },
+    })
+    await tx.album.create({
+      data: { bandId: blackSabbath.id, name: 'Black Sabbath' },
+    })
+    await tx.album.create({
+      data: { bandId: blackSabbath.id, name: 'Paranoid' },
+    })
+
+    return tx.band.findUnique({
+      where: { id: blackSabbath.id },
+      include: { albums: true },
+    })
+  }
+
+  return db.$transaction(unitOfWork)
+}
+
+async function seedBlackSabbath2() {
+  // create ids before hand
+  const bandId = v4()
+  // create promises for each db operation (no await)
+  const createBand = db.band.create({
+    data: { id: bandId, name: 'Black Sabbath' },
+  })
+  const createAlbumBlackSabbath = db.album.create({
+    data: { bandId: bandId, name: 'Black Sabbath' },
+  })
+  const createAlbumParanoid = db.album.create({
+    data: { bandId: bandId, name: 'Paranoid' },
+  })
+
+  // execute all of the promises in a transation
+  await db.$transaction([
+    createBand,
+    createAlbumBlackSabbath,
+    createAlbumParanoid,
+  ])
+
+  // query data after the transation is over
+  return db.band.findUnique({
+    where: { id: bandId },
+    include: { albums: true },
+  })
+}
+
+async function createBand(name: string, albums: string[]) {
+  const unitOfWork = async (tx: PrismaClient) => {
+    const band = await tx.band.create({
+      data: { name: name },
+    })
+
+    albums.forEach(async (albumName) => {
+      await tx.album.create({
+        data: { bandId: band.id, name: albumName },
+      })
+    })
+
+    return tx.band.findUnique({
+      where: { id: band.id },
+      include: { albums: true },
+    })
+  }
+
+  return db.$transaction(unitOfWork)
 }
