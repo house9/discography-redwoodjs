@@ -280,13 +280,6 @@ async function seedMetallica() {
       musicianId: dave.id,
     },
   })
-  await db.bandMember.create({
-    data: {
-      active: false,
-      bandId: metallica.id,
-      musicianId: jason.id,
-    },
-  })
 
   const rideTheLightning = await db.album.create({
     data: {
@@ -321,7 +314,9 @@ async function seedMetallica() {
     data: {
       name: 'The Call of Ktulu',
       albumId: rideTheLightning.id,
-      // writingCredits: [cliff.id], TODO: ????????????????????
+      writingCredits: {
+        connect: [{ id: cliff.id }, { id: dave.id }],
+      },
     },
   })
   const rideTheLightningSongs = await db.song.findMany({

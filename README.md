@@ -42,6 +42,7 @@ I recommend reading the links listed in the Resources section of each document:
   - [many-to-many (implicit)](./docs/prisma-3-many-to-many-implicit.md)
   - [many-to-many (explicit)](./docs/prisma-4-many-to-many-explicit.md)
   - TODO: database transactions
+  - see also: [./scripts/seed.ts](./scripts/seed.ts)
 - TODO: services
 - TODO: GraphQL
 - TODO: front end
