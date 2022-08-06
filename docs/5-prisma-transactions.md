@@ -114,7 +114,7 @@ async function createBand(name: string, albums: Album[]) {
       data: { name: name },
     })
 
-    albums.forEach((albumName) => {
+    albums.forEach(async(albumName) => {
       await tx.album.create({
         data: { bandId: band.id, name: albumName },
       })

@@ -37,14 +37,14 @@ Our sample application is running a postgres database inside a Docker container.
 I recommend reading the links listed in the Resources section of each document:
 
 - Data modeling and querying with Prisma
-  - [Intro](./docs/prisma-1-intro.md)
-  - [one-to-many](./docs/prisma-2-one-to-many.md)
-  - [many-to-many (implicit)](./docs/prisma-3-many-to-many-implicit.md)
-  - [many-to-many (explicit)](./docs/prisma-4-many-to-many-explicit.md)
-  - [transactions](./docs/prisma-5-transactions.md)
+  - [Intro](./docs/1-prisma-intro.md)
+  - [one-to-many](./docs/2-prisma-one-to-many.md)
+  - [many-to-many (implicit)](./docs/3-prisma-many-to-many-implicit.md)
+  - [many-to-many (explicit)](./docs/4-prisma-many-to-many-explicit.md)
+  - [transactions](./docs/5-prisma-transactions.md)
   - see also: [./scripts/seed.ts](./scripts/seed.ts)
 - Redwood Record
-  - [redwood-record](./docs/6.redwood-record.md)
+  - [redwood-record](./docs/6-redwood-record.md)
 - TODO: services
 - TODO: GraphQL
 - TODO: front end

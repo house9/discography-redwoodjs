@@ -80,6 +80,7 @@ const uniqueMusicianNames = [...new Set(musicianNames)].sort()
 has-many through is in the works
 
 ```ts
+// TODO: ......
 const bands = await Band.all({ orderBy: { name: 'asc' } })
 const members = bands.map((band) => band.member)
 
