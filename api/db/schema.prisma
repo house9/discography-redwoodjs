@@ -74,8 +74,4 @@ model BandMember {
 // ?
 // https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations
 
-
-// TODO: transaction example
-// TBD: does seed run in a transaction already?
-
 // TODO: timestamps

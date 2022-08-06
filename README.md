@@ -41,8 +41,10 @@ I recommend reading the links listed in the Resources section of each document:
   - [one-to-many](./docs/prisma-2-one-to-many.md)
   - [many-to-many (implicit)](./docs/prisma-3-many-to-many-implicit.md)
   - [many-to-many (explicit)](./docs/prisma-4-many-to-many-explicit.md)
-  - TODO: database transactions
+  - [transactions](./docs/prisma-5-transactions.md)
   - see also: [./scripts/seed.ts](./scripts/seed.ts)
+- Redwood Record
+  - [redwood-record](./docs/6.redwood-record.md)
 - TODO: services
 - TODO: GraphQL
 - TODO: front end
