@@ -9,18 +9,23 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
-import WidgetsLayout from 'src/layouts/WidgetsLayout'
+import AppLayout from 'src/layouts/AppLayout/AppLayout'
 
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={WidgetsLayout}>
-        <Route path="/widgets/new" page={WidgetNewWidgetPage} name="newWidget" />
-        <Route path="/widgets/{id}/edit" page={WidgetEditWidgetPage} name="editWidget" />
-        <Route path="/widgets/{id}" page={WidgetWidgetPage} name="widget" />
-        <Route path="/widgets" page={WidgetWidgetsPage} name="widgets" />
+      <Set wrap={AppLayout}>
+        <Route path="/home" page={HomePage} name="home" />
+
+        <Set>
+          <Route path="/widgets/new" page={WidgetNewWidgetPage} name="newWidget" />
+          <Route path="/widgets/{id}/edit" page={WidgetEditWidgetPage} name="editWidget" />
+          <Route path="/widgets/{id}" page={WidgetWidgetPage} name="widget" />
+          <Route path="/widgets" page={WidgetWidgetsPage} name="widgets" />
+        </Set>
+
+        <Route notfound page={NotFoundPage} />
       </Set>
-      <Route notfound page={NotFoundPage} />
     </Router>
   )
 }
