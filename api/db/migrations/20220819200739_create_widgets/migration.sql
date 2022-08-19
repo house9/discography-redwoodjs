@@ -12,3 +12,6 @@ CREATE TABLE "widgets" (
 -- CreateIndex
 CREATE UNIQUE INDEX "widgets_name_key" ON "widgets"("name");
 
+-- UpdatedAt trigger
+CREATE TRIGGER update_timestamps_trigger BEFORE UPDATE ON "widgets"
+FOR EACH ROW EXECUTE PROCEDURE moddatetime("updatedAt");
