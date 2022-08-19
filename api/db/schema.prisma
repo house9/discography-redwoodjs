@@ -75,3 +75,17 @@ model BandMember {
 // https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations
 
 // TODO: timestamps
+
+
+// unrelated
+
+model Widget {
+  @@map("widgets")
+
+  id String @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  name String @unique
+  description String?
+}
