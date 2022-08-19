@@ -13,15 +13,18 @@ const CREATE_WIDGET_MUTATION = gql`
 `
 
 const NewWidget = () => {
-  const [createWidget, { loading, error }] = useMutation(CREATE_WIDGET_MUTATION, {
-    onCompleted: () => {
-      toast.success('Widget created')
-      navigate(routes.widgets())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+  const [createWidget, { loading, error }] = useMutation(
+    CREATE_WIDGET_MUTATION,
+    {
+      onCompleted: () => {
+        toast.success('Widget created')
+        navigate(routes.widgets())
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
 
   const onSave = (input) => {
     createWidget({ variables: { input } })

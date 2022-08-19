@@ -1,4 +1,4 @@
-import WidgetCell from 'src/components/Widget/WidgetCell'
+import WidgetCell from 'src/components/Widget/WidgetCell/'
 
 type WidgetPageProps = {
   id: string

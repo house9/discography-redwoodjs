@@ -21,10 +21,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No widgets yet. '}
-      <Link
-        to={routes.newWidget()}
-        className="rw-link"
-      >
+      <Link to={routes.newWidget()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>

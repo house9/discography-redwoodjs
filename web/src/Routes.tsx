@@ -15,7 +15,7 @@ const Routes = () => {
   return (
     <Router>
       <Set wrap={AppLayout}>
-        <Route path="/home" page={HomePage} name="home" />
+        <Route path="/" page={HomePage} name="home" />
 
         <Set>
           <Route path="/widgets/new" page={WidgetNewWidgetPage} name="newWidget" />
