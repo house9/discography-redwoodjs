@@ -1,4 +1,4 @@
-import EditWidgetCell from 'src/components/Widget/EditWidgetCell'
+import EditWidgetCell from 'src/components/Widget/EditWidgetCell/'
 
 type WidgetPageProps = {
   id: string

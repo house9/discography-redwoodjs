@@ -9,6 +9,7 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
+import { EditWidgetPage, NewWidgetPage, WidgetPage, WidgetsPage } from 'src/components/Widget/pages'
 import AppLayout from 'src/layouts/AppLayout/AppLayout'
 
 const Routes = () => {
@@ -18,10 +19,10 @@ const Routes = () => {
         <Route path="/" page={HomePage} name="home" />
 
         <Set>
-          <Route path="/widgets/new" page={WidgetNewWidgetPage} name="newWidget" />
-          <Route path="/widgets/{id}/edit" page={WidgetEditWidgetPage} name="editWidget" />
-          <Route path="/widgets/{id}" page={WidgetWidgetPage} name="widget" />
-          <Route path="/widgets" page={WidgetWidgetsPage} name="widgets" />
+          <Route path="/widgets/new" page={NewWidgetPage} name="newWidget" />
+          <Route path="/widgets/{id}/edit" page={EditWidgetPage} name="editWidget" />
+          <Route path="/widgets/{id}" page={WidgetPage} name="widget" />
+          <Route path="/widgets" page={WidgetsPage} name="widgets" />
         </Set>
 
         <Route notfound page={NotFoundPage} />
